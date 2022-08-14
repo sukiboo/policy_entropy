@@ -1,0 +1,26 @@
+
+exp_name: mnist
+seed: 2022
+
+env_name: mnist
+
+params_exp:
+    arch: [64,64]
+    num_timesteps: 0.5e+5
+    eval_interval: 250
+
+params_agents:
+
+    'A2C':
+        alg_type: A2C
+        hyperparams: {learning_rate: 1.0e-3}
+        batch_size: 32
+    'DQN':
+        alg_type: DQN
+        hyperparams: {learning_rate: 3.0e-4}
+        batch_size: 32
+    'PPO':
+        alg_type: PPO
+        hyperparams: {learning_rate: 1.0e-3}
+        batch_size: 32
+

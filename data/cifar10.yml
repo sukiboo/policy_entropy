@@ -1,0 +1,25 @@
+env_name: cifar10
+exp_name: cifar10
+params_agents:
+  A2C:
+    alg_type: A2C
+    batch_size: 32
+    hyperparams:
+      learning_rate: 0.0001
+  DQN:
+    alg_type: DQN
+    batch_size: 32
+    hyperparams:
+      learning_rate: 5.0e-06
+  PPO:
+    alg_type: PPO
+    batch_size: 32
+    hyperparams:
+      learning_rate: 0.0001
+params_exp:
+  arch:
+  - 128
+  - 128
+  eval_interval: 2500
+  num_timesteps: 500000.0
+seed: 2022

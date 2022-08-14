@@ -1,0 +1,25 @@
+env_name: spotify
+exp_name: spotify
+params_agents:
+  A2C:
+    alg_type: A2C
+    batch_size: 32
+    hyperparams:
+      learning_rate: 0.001
+  DQN:
+    alg_type: DQN
+    batch_size: 32
+    hyperparams:
+      learning_rate: 0.001
+  PPO:
+    alg_type: PPO
+    batch_size: 32
+    hyperparams:
+      learning_rate: 0.001
+params_exp:
+  arch:
+  - 256
+  - 256
+  eval_interval: 100
+  num_timesteps: 20000.0
+seed: 2022
