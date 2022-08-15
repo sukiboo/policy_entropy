@@ -7,7 +7,7 @@ from environments.personalization.bandit_environment import Hyperpersonalization
 class PersonalizationEnv(gym.Env):
     '''create a contextual bandit based on Hyperpersonalization environment'''
 
-    def __init__(self, num_eval=1000, seed=0):
+    def __init__(self, num_eval=10000, seed=0):
         super().__init__()
         self.env_name = 'personalization'
         self.num_eval = num_eval

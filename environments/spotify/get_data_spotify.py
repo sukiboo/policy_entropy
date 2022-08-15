@@ -100,19 +100,11 @@ def read_spotify_data(info):
 
 def plot_genre_features(data):
     '''plot average feature vector for each genre'''
-    ##features = np.array(data.values.tolist())
-    ##fig, ax = plt.subplots(figsize=(6,8))
-    ##plt.imshow(features)
-    ##ax.set_xticks(range(data.shape[1]))
-    ##ax.set_xticklabels(data.columns, rotation=45, ha='right', rotation_mode='anchor')
-    ##ax.set_yticks(range(data.shape[0]))
-    ##ax.set_yticklabels(data.index)
     features = np.array(data.values.tolist()).T
     fig, ax = plt.subplots(figsize=(8,5))
     plt.imshow(features)
     ax.set_xticks(range(data.shape[0]))
     ax.set_xticklabels(data.index, rotation=45, ha='left', rotation_mode='anchor')
-    ##ax.xaxis.set_label_position('top')
     ax.xaxis.tick_top()
     ax.set_yticks(range(data.shape[1]))
     ax.set_yticklabels(data.columns)
@@ -179,5 +171,5 @@ if __name__ == '__main__':
 
     # visualize data
     plot_genre_features(genres)
-    ##plot_genre_diffs(genres)
+    plot_genre_diffs(genres)
 
