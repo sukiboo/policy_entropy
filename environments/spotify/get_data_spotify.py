@@ -100,15 +100,24 @@ def read_spotify_data(info):
 
 def plot_genre_features(data):
     '''plot average feature vector for each genre'''
-    features = np.array(data.values.tolist())
-    fig, ax = plt.subplots(figsize=(6,8))
+    ##features = np.array(data.values.tolist())
+    ##fig, ax = plt.subplots(figsize=(6,8))
+    ##plt.imshow(features)
+    ##ax.set_xticks(range(data.shape[1]))
+    ##ax.set_xticklabels(data.columns, rotation=45, ha='right', rotation_mode='anchor')
+    ##ax.set_yticks(range(data.shape[0]))
+    ##ax.set_yticklabels(data.index)
+    features = np.array(data.values.tolist()).T
+    fig, ax = plt.subplots(figsize=(8,5))
     plt.imshow(features)
-    ax.set_xticks(range(data.shape[1]))
-    ax.set_xticklabels(data.columns, rotation=45, ha='right', rotation_mode='anchor')
-    ax.set_yticks(range(data.shape[0]))
-    ax.set_yticklabels(data.index)
+    ax.set_xticks(range(data.shape[0]))
+    ax.set_xticklabels(data.index, rotation=45, ha='left', rotation_mode='anchor')
+    ##ax.xaxis.set_label_position('top')
+    ax.xaxis.tick_top()
+    ax.set_yticks(range(data.shape[1]))
+    ax.set_yticklabels(data.columns)
     plt.grid(None)
-    plt.colorbar()
+    plt.colorbar(orientation='horizontal')
     plt.tight_layout()
     plt.show()
 
@@ -160,18 +169,15 @@ if __name__ == '__main__':
     # download or load spotify data
     download = False
     if download:
-        info_train = download_spotify_data(playlists_train, save_name='spotify_train')
-        info_test = download_spotify_data(playlists_test, save_name='spotify_test')
+        info_train = download_spotify_data(playlists_train, save_name='spotify_genres')
+        info_test = download_spotify_data(playlists_test, save_name='spotify_actions')
     else:
-        info_train = pd.read_csv('./spotify_train.csv', index_col=0)
-        info_test = pd.read_csv('./spotify_test.csv', index_col=0)
+        info_train = pd.read_csv('./spotify_genres.csv', index_col=0)
+        info_test = pd.read_csv('./spotify_actions.csv', index_col=0)
     genres, tracks_train = read_spotify_data(info_train)
     _, tracks = read_spotify_data(info_test)
 
-    # get data for test playlist
-    tracks, features, id = get_playlist_features(token, playlists_test['top50'])
-
     # visualize data
     plot_genre_features(genres)
-    plot_genre_diffs(genres)
+    ##plot_genre_diffs(genres)
 

@@ -22,7 +22,7 @@ class PersonalizationEnv(gym.Env):
 
     def setup(self):
         '''setup the environment'''
-        params_env = {'num_a': 100, 'dim_s': 10, 'dim_a': 10, 'dim_feature': 10,
+        params_env = {'num_a': 100, 'dim_s': 100, 'dim_a': 100, 'dim_feature': 5,
                       's_low': -1, 's_high': 1, 'a_low': -1, 'a_high': 1,
                       'r_arch': [], 'seed': self.random_seed}
         self.bandit_env = HyperpersonalizationEnv(params_env)
