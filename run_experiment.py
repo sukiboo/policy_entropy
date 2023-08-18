@@ -1,4 +1,3 @@
-
 import argparse
 import yaml
 
@@ -12,7 +11,7 @@ if __name__ == '__main__':
     # parse arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('--load', '-l', default=False)
-    parser.add_argument('--config', '-c', default='config_mnist')
+    parser.add_argument('--config', '-c', default='mnist')
     args = parser.parse_args()
 
     # obtain experiment data
@@ -20,13 +19,13 @@ if __name__ == '__main__':
 
         # set up experiment
         configs = yaml.safe_load(open(f'./configs/{args.config}.yml'))
-        print(f'\nrunning experiment {configs["exp_name"]}...')
+        print(f'\nRunning experiment {configs["exp_name"]}...')
         env = create_environment(configs['env_name'], configs['seed'])
         agents = setup_agents(env, configs['params_exp'], configs['params_agents'], configs['seed'])
 
         # train agents
         for name, agent in agents.items():
-            print(f'\ntraining {name} agent on {env.env_name} environment:')
+            print(f'\nTraining {name} agent on {env.env_name} environment:')
             agent.train()
         viz = DataVisualization(env, agents, configs)
         viz.serialize_data()
@@ -34,7 +33,7 @@ if __name__ == '__main__':
     else:
 
         # load experiment data
-        print(f'\nloading experiment {args.load}...')
+        print(f'\nLoading experiment {args.load}...')
         configs = yaml.safe_load(open(f'./data/{args.load}.yml'))
         env = create_environment(configs['env_name'], configs['seed'])
         agents = setup_agents(env, configs['params_exp'], configs['params_agents'], configs['seed'])

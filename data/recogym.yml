@@ -6,20 +6,10 @@ params_agents:
     batch_size: 32
     hyperparams:
       learning_rate: 0.0001
-  DQN:
-    alg_type: DQN
-    batch_size: 32
-    hyperparams:
-      learning_rate: 0.0001
-  PPO:
-    alg_type: PPO
-    batch_size: 32
-    hyperparams:
-      learning_rate: 0.0001
 params_exp:
   arch:
   - 512
   - 512
   eval_interval: 2500
   num_timesteps: 500000.0
-seed: 2022
+seed: 2024

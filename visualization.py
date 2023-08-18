@@ -1,4 +1,3 @@
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -57,7 +56,7 @@ class DataVisualization:
         '''plot agents' test histograms throughout the training process'''
         sns.set_palette('Paired')
         for name, agent in self.agents.items():
-            fig, ax = plt.subplots(figsize=(6,3))
+            fig, ax = plt.subplots(figsize=(8,4))
             df = pd.DataFrame(agent['hist'], index=agent['eval_steps'])[::step]
             if sort:
                 df.values[:,::-1].sort(axis=1)
@@ -79,7 +78,7 @@ class DataVisualization:
     def plot_entropy(self, step=1, show=True):
         '''plot agents' entropy throughout the training process'''
         sns.set_palette(sbn_base)
-        fig, ax = plt.subplots(figsize=(9,3))
+        fig, ax = plt.subplots(figsize=(8,4))
         for name, agent in self.agents.items():
             agent_ent = [np.sum(-np.array(h) * np.log(h)) for h in agent['hist']]
             plt.plot(agent['eval_steps'][::step], agent_ent[::step], linewidth=4, label=name)
@@ -96,7 +95,7 @@ class DataVisualization:
     def plot_rewards(self, step=1, show=True):
         '''plot evaluation rewards throughout the training process'''
         sns.set_palette(sbn_base)
-        fig, ax = plt.subplots(figsize=(9,3))
+        fig, ax = plt.subplots(figsize=(8,4))
         for name, agent in self.agents.items():
             plt.plot(agent['eval_steps'][::step], agent['eval'][::step], linewidth=4, label=name)
         ##ax.set_xlabel('number of agent-environment interactions')

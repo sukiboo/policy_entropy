@@ -22,4 +22,4 @@ params_exp:
   - 512
   eval_interval: 500
   num_timesteps: 100000.0
-seed: 2022
+seed: 2024

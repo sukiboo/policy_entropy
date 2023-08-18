@@ -75,7 +75,7 @@ def download_spotify_data(playlists, save_name='spotify_data'):
         while not downloaded:
             try:
                 tracks, features, playlist_name = get_playlist_features(token, id)
-                features.to_csv(f'./spotify_data/{name}.csv')
+                features.to_csv(f'./data/{name}.csv')
                 info.append({'genre': name, 'spotify_id': id, 'spotify_name': playlist_name, 'tracks': len(tracks)})
                 print(f'downloaded data from {name}')
                 downloaded = True
@@ -133,8 +133,10 @@ def plot_genre_diffs(genres):
 
 if __name__ == '__main__':
 
-    # generate new token at https://developer.spotify.com/console/get-current-user/
-    token = 'BQAFM6V_wvbSiVp1SpU32QYTibcqLKjOXRMB9FitMWXn1eKNecZtvCgTPIpSJfwr_mpyRI1crfL_q5Bvgx1QZn3L5ROjvDJV5aGIeGldFI8e25xYKEywj7ULXSq91XbTdmytx1Zof72pIfQOZLvlcV674ZpNZswQdBVtVFcjrFlyGX4'
+    # generate new token at https://developer.spotify.com/documentation/web-api/concepts/access-token
+    token = 'BQB6_ZDp3nwtTAbaAA3csiN6dJqFfArrT_T9QJ'\
+          + 'nT2HM1H9ITiLyGQaE4avcEJeoHidT4yZWiPCgD'\
+          + 'Yc1lhvVHrJyM00d2UTMZEvKIs5YPC4iNvnbtw4w'
 
     playlists_test = {'top50': '37i9dQZEVXbMDoHDwVN2tF'}
     playlists_train = {'acoustic': '37i9dQZF1DX504r1DvyvxG',
@@ -161,11 +163,11 @@ if __name__ == '__main__':
     # download or load spotify data
     download = False
     if download:
-        info_train = download_spotify_data(playlists_train, save_name='spotify_genres')
         info_test = download_spotify_data(playlists_test, save_name='spotify_actions')
+        info_train = download_spotify_data(playlists_train, save_name='spotify_genres')
     else:
-        info_train = pd.read_csv('./spotify_genres.csv', index_col=0)
         info_test = pd.read_csv('./spotify_actions.csv', index_col=0)
+        info_train = pd.read_csv('./spotify_genres.csv', index_col=0)
     genres, tracks_train = read_spotify_data(info_train)
     _, tracks = read_spotify_data(info_test)
 
